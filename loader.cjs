@@ -1,4 +1,4 @@
 async function loadApp() {
-    await import('./build/bin/server.js');
+    await import('./bin/server.js');
 }
 loadApp();
