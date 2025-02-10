@@ -5,7 +5,7 @@ FROM node:21
 WORKDIR /app
 
 # Copy the application files into the working directory
-COPY ./build /app
+COPY /build /app
 
 RUN ls
 
