@@ -7,18 +7,15 @@ WORKDIR /app
 # Copy the application files into the working directory
 COPY . /app
 
+# Install the application dependencies
 RUN npm install
 
-# RUN cd build
-# Install the application dependencies
-
-
-# # Build the React application
+# Build the React application
 RUN npm run build
 
 # RUN cd build
 
-
+# RUN ls
 
 # RUN npm ci --omit="dev"
 
@@ -28,7 +25,7 @@ RUN npm run build
 EXPOSE 3000
 
 # Define the entry point for the container
-CMD ["npm", "loader"]
+CMD ["node", "loader.cjs"]
 
 # RUN npm ci --omit="dev"
 
