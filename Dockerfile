@@ -1,31 +1,29 @@
-# Use the official Node.js image as the base image
-FROM node:21
+FROM node:20.12.2-alpine3.18 AS base
 
-# Set the working directory in the container
+# All deps stage
+FROM base AS deps
 WORKDIR /app
+ADD package.json package-lock.json ./
+RUN npm ci
 
-# Copy the application files into the working directory
-COPY . /app
+# Production only deps stage
+FROM base AS production-deps
+WORKDIR /app
+ADD package.json package-lock.json ./
+RUN npm ci --omit=dev
 
-# Install the application dependencies
-RUN npm install
+# Build stage
+FROM base AS build
+WORKDIR /app
+COPY --from=deps /app/node_modules /app/node_modules
+ADD . .
+RUN node ace build
 
-# Build the React application
-RUN npm run build
-
-# RUN cd build
-
-# RUN ls
-
-# RUN npm ci --omit="dev"
-
-# RUN node bin/server.js 
-# RUN npm run build
-# Expose port 3000
-EXPOSE 3000
-
-# Define the entry point for the container
-CMD ["node", "loader.cjs"]
-
-# RUN npm ci --omit="dev"
-
+# Production stage
+FROM base
+ENV NODE_ENV=production
+WORKDIR /app
+COPY --from=production-deps /app/node_modules /app/node_modules
+COPY --from=build /app/build /app
+EXPOSE 8080
+CMD ["node", "./bin/server.js"]
