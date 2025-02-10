@@ -11,7 +11,7 @@
 
 import 'reflect-metadata'
 import { Ignitor, prettyPrintError } from '@adonisjs/core'
-import ngrok from '@ngrok/ngrok'
+// import ngrok from '@ngrok/ngrok'
 
 /**
  * URL to the application root. AdonisJS need it to resolve
