@@ -28,7 +28,7 @@ RUN npm run build
 EXPOSE 3000
 
 # Define the entry point for the container
-CMD ["node", "loader.cjs"]
+CMD ["npm", "loader"]
 
 # RUN npm ci --omit="dev"
 
