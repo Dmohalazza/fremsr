@@ -5,7 +5,7 @@ FROM node:21
 WORKDIR /app
 
 # Copy the application files into the working directory
-COPY ./ /app
+COPY . /app
 
 RUN cd build
 
