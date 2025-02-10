@@ -5,17 +5,19 @@ FROM node:21
 WORKDIR /app
 
 # Copy the application files into the working directory
-COPY . /app
+COPY ./build /app
+
+RUN ls
 
 # Install the application dependencies
 RUN npm install
 
-# Build the React application
-RUN npm run build
+# # Build the React application
+# RUN npm run build
 
-RUN cd build
+# RUN cd build
 
-RUN ls
+
 
 RUN npm ci --omit="dev"
 
