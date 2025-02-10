@@ -10,7 +10,7 @@ COPY ./build /app
 RUN ls
 
 # Install the application dependencies
-RUN npm install
+# RUN npm install
 
 # # Build the React application
 # RUN npm run build
