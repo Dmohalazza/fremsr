@@ -17,7 +17,7 @@ RUN npm install
 
 # RUN ls
 
-RUN npm ci --omit="dev"
+# RUN npm ci --omit="dev"
 
 # RUN node bin/server.js 
 # RUN npm run build
